@@ -30,7 +30,7 @@ namespace ApiVersioningError.Controllers
 
 		// GET api/<PetController>/5
 		[HttpGet("{id}")]
-		public Pet GetById(int id)
+		public Pet Get(int id)
 		{
 			return _petStorage[id];
 		}
@@ -56,7 +56,7 @@ namespace ApiVersioningError.Controllers
 
 			_petStorage.Add(pet.Id.Value, pet);
 
-			return CreatedAtAction(nameof(GetById), new { pet.Id, ApiVersion = new ApiVersion(1, 0) }, pet);
+			return CreatedAtAction(nameof(Get), new { pet.Id, version = new ApiVersion(1, 0).ToString() }, pet);
 		}
 
 		// PUT api/<PetController>/5
